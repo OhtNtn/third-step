@@ -9,6 +9,8 @@ int main(){
  double dev0_s[20]={0.0},dev0_e[20]={0.0};
  double devsum_s=0.0,devsum_e=0.0;
  double tmp;
+ double devv_s[20]={0.0};
+ double devv_e[20]={0.0};
 
  for(int i=0;i<20;i++){
    sum_s+=science[i];
@@ -27,13 +29,27 @@ int main(){
  dev_s=sqrt((devsum_s/20.0));
  dev_e=sqrt((devsum_e/20.0));
 
+ for(int t=0;t<20;t++){
+  devv_s[t]=10.0*(dev0_s[t]/dev_s)+50.0;
+  devv_e[t]=10.0*(dev0_e[t]/dev_e)+50.0;
+ }
  printf("平均点（理科）：%g\n",ave_s);
  printf("平均点（英語）：%g\n",ave_e);
  printf("標準偏差（理科）：%g\n",dev_s);
  printf("標準偏差（英語）：%g\n",dev_e);
  printf("合計点（理科）：%g\n",sum_s);
  printf("合計点（英語）：%g\n",sum_e);
+ printf("偏差値（理科）；");
+ for(int y=0;y<20;y++){
+  printf("%g ",devv_s[y]);
+ }
+ printf("\n");
+ printf("偏差値（英語）：");
 
+ for (int u=0;u<20;u++){
+  printf("%g ",devv_e[u]);
+ }
+ printf("\n");
  for(int m=0;m<20;m++){
  for(int n=m+1;n<20;n++){
   if(science[m]<science[n]){
